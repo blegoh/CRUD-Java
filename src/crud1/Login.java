@@ -16,6 +16,8 @@ import javax.swing.JOptionPane;
 public class Login extends javax.swing.JFrame {
 
     private Koneksi kon;
+    public static int employeeId;
+    public static String title;
     
     public Login() throws SQLException {
         kon = new Koneksi("root", "hornline", "northwind");
@@ -97,10 +99,15 @@ public class Login extends javax.swing.JFrame {
             ResultSet rs = kon.getResult(sql);
             rs.last();
             if (rs.getRow() == 1) {
+                sql = "select * from Employees where EmployeeID = "+rs.getString("EmployeeID");
+                ResultSet r = kon.getResult(sql);
+                r.next();
+                employeeId = r.getInt("EmployeeID");
+                title = r.getString("Title");
                 new Shipper().setVisible(true);
                 this.dispose();
             }else{
-                JOptionPane.showConfirmDialog(this, "Username dan Password tidak sesuai");
+                JOptionPane.showMessageDialog(this, "Username dan Password tidak sesuai");
             }
         } catch (SQLException ex) {
             System.out.println(ex);
