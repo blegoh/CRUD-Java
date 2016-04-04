@@ -13,6 +13,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Product"/>
           </Properties>
+          <Events>
+            <EventHandler event="menuSelected" listener="javax.swing.event.MenuListener" parameters="javax.swing.event.MenuEvent" handler="jMenu2MenuSelected"/>
+          </Events>
         </Menu>
       </SubComponents>
     </Menu>
